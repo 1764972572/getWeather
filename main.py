@@ -113,8 +113,35 @@ def get_ciba():
     note_en = r.json()["content"]
     note_ch = r.json()["note"]
     return note_ch, note_en
+def get_constellation():
+    url = "http://api.avatardata.cn/Constellation/Query?consName={}&type=today&APIKey:UdKee2QOF7L63zzZwO8nTTZi&SKey:4mxj8a1n6Vm3SfhRAaRMZBjrrSUDO0qk".format()
+    
+    headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    r = get(url, headers=headers)
+    note_en = r.json()["content"]
+    note_ch = r.json()["note"]
+    return note_ch, note_en
  
- 
+def get_words
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    url = "https://res.abeim.cn/api-text_sweet?export=json"
+    r = get(url,headers=headers)
+    return r["content"]
+def get_constellation(type)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(type)
+    return get(url,headers=headers)["data"]["fortunetext"]["all"]
+
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
@@ -128,6 +155,7 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
     love_month = int(config["love_date"].split("-")[1])
     love_day = int(config["love_date"].split("-")[2])
     love_date = date(love_year, love_month, love_day)
+    
     # 获取在一起的日期差
     love_days = str(today.__sub__(love_date)).split(" ")[0]
     # 获取所有生日数据
@@ -171,6 +199,14 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
             },
             "note_ch": {
                 "value": note_ch,
+                "color": get_color()
+            }
+            "sweetwords":{
+                "value": sweetwords,
+                "color": get_color()
+            }
+            "constellation":{
+                "value": constellation,
                 "color": get_color()
             }
         }
@@ -224,6 +260,8 @@ if __name__ == "__main__":
     weather, temp, wind_dir = get_weather(region)
     note_ch = config["note_ch"]
     note_en = config["note_en"]
+    sweetwords = get_words()
+    constellation = get_constellation(config["constellation"])
     if note_ch == "" and note_en == "":
         # 获取词霸每日金句
         note_ch, note_en = get_ciba()
