@@ -200,15 +200,15 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
             "note_ch": {
                 "value": note_ch,
                 "color": get_color()
-            }
+            },
             "sweetwords":{
                 "value": sweetwords,
                 "color": get_color()
-            }
+            },
             "constellation":{
                 "value": constellation,
                 "color": get_color()
-            }
+            },
         }
     }
     for key, value in birthdays.items():
