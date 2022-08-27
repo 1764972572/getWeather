@@ -126,7 +126,7 @@ def get_constellation():
     note_ch = r.json()["note"]
     return note_ch, note_en
  
-def get_words
+def get_words():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
@@ -134,7 +134,7 @@ def get_words
     url = "https://res.abeim.cn/api-text_sweet?export=json"
     r = get(url,headers=headers)
     return r["content"]
-def get_constellation(type)
+def get_constellation(type):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
