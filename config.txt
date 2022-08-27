@@ -5,7 +5,7 @@
 # 公众号appSecret
 "app_secret": "6bbd62e296771ce38284e798e68f8e15",
 # 模板消息id
-"template_id":"chTUJgIx1LpzcCHrvcfqmxaJ1xKWZpCxA8F3tqg-XqY",
+"template_id":"qkRlHAVGAGH8OHX8LT5FrovcN-17bK-M0yK1VWOnOYs",
 # 接收公众号消息的微信号，如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
 "user": ["oFvZy6IuxNAEKzk15tt83tbhAlUQ","oFvZy6FG9qdLMkKGqjhDyWa4_VEw"],
  
@@ -22,4 +22,5 @@
 "note_ch": "",
 # 金句英文
 "note_en": "",
+"constellation": "aries",
 }
