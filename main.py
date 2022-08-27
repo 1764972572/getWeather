@@ -126,14 +126,7 @@ def get_constellation():
     note_ch = r.json()["note"]
     return note_ch, note_en
  
-def get_words():
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    url = "https://res.abeim.cn/api-text_sweet?export=json"
-    r = get(url,headers=headers)
-    return r["content"]
+
 def get_constellation(type):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -201,10 +194,7 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
                 "value": note_ch,
                 "color": get_color()
             },
-            "sweetwords":{
-                "value": sweetwords,
-                "color": get_color()
-            },
+
             "constellation":{
                 "value": constellation,
                 "color": get_color()
@@ -260,12 +250,11 @@ if __name__ == "__main__":
     weather, temp, wind_dir = get_weather(region)
     note_ch = config["note_ch"]
     note_en = config["note_en"]
-    sweetwords = get_words()
     constellation = get_constellation(config["constellation"])
     if note_ch == "" and note_en == "":
         # 获取词霸每日金句
         note_ch, note_en = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en, constellation)
     os.system("pause")
