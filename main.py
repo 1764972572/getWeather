@@ -135,13 +135,13 @@ def get_words():
     url = "https://res.abeim.cn/api-text_sweet?export=json"
     r = get(url,headers=headers).json()
     return r["content"]
-def get_constellation(type):
+def get_constellation(constellationType):
     headers = {
         'Content-Type': 'text/json; charset=utf-8',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(type)
+    url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(constellationType)
     print(get(url,headers=headers))
     return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
 
@@ -263,8 +263,9 @@ if __name__ == "__main__":
     weather, temp, wind_dir = get_weather(region)
     note_ch = config["note_ch"]
     note_en = config["note_en"]
+    constellationType = config["constellation"]
     sweetwords = get_words()
-    constellation = get_constellation(config["constellation"])
+    constellation = get_constellation(constellationType)
     if note_ch == "" and note_en == "":
         # 获取词霸每日金句
         note_ch, note_en = get_ciba()
