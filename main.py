@@ -135,14 +135,14 @@ def get_words():
     url = "https://res.abeim.cn/api-text_sweet?export=json"
     r = get(url,headers=headers).json()
     return r["content"]
-def get_constellation(constellationType):
-    headers = {
-        'Content-Type': 'text/json; charset=utf-8',
-    }
-    url = "https://api.vvhan.com/api/horoscope?type=aries&time=today"
-    return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
+# def get_constellation(constellationType):
+#     headers = {
+#         'Content-Type': 'text/json; charset=utf-8',
+#     }
+#     url = "https://api.vvhan.com/api/horoscope?type=aries&time=today"
+#     return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
 
-def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en, sweetwords,constellation):
+def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en, sweetwords):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     year = localtime().tm_year
@@ -205,10 +205,10 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
                 "value": sweetwords,
                 "color": get_color()
             },
-            "constellation":{
-                "value": constellation,
-                "color": get_color()
-            }
+#             "constellation":{
+#                 "value": constellation,
+#                 "color": get_color()
+#             }
         }
     }
     for key, value in birthdays.items():
@@ -262,11 +262,11 @@ if __name__ == "__main__":
     note_en = config["note_en"]
     constellationType = config["constellation"]
     sweetwords = get_words()
-    constellation = get_constellation(constellationType)
+#     constellation = get_constellation(constellationType)
     if note_ch == "" and note_en == "":
         # 获取词霸每日金句
         note_ch, note_en = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en,sweetwords,constellation)
+        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en,sweetwords)
     os.system("pause")
