@@ -133,7 +133,7 @@ def get_words():
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
     url = "https://res.abeim.cn/api-text_sweet?export=json"
-    r = get(url,headers=headers).json();
+    r = get(url,headers=headers);
     return r["content"]
 def get_constellation(type):
     headers = {
@@ -142,7 +142,7 @@ def get_constellation(type):
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
     url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(type)
-    return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
+    return get(url,headers=headers)["data"]["fortunetext"]["all"]
 
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en, sweetwords,constellation):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
