@@ -137,9 +137,16 @@ def get_words():
     return r["content"]
 def get_constellation(constellationType):
     headers = {
+        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'text/json; charset=utf-8',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none'
+        'Sec-Fetch-User': '?1'
+        'Upgrade-Insecure-Requests': '1'
+        'Cookie': '__51vcke__JLvourAu9qIUtWYT=87806844-7206-5c68-90e4-cd4bb4ef235a; __51vuft__JLvourAu9qIUtWYT=1661604245787; __gads=ID=a26ebd4ae7d69e20-2217236b07d600b8:T=1661604252:RT=1661604252:S=ALNI_MYT9CH7gTu2AnmahwRHAK9SIPl9sw; __gpi=UID=00000921a3d51636:T=1661604252:RT=1661604252:S=ALNI_MZ5UdyIn_xKkkR58heoCNjEMP47MA; __51uvsct__JLvourAu9qIUtWYT=2; __vtins__JLvourAu9qIUtWYT=%7B%22sid%22%3A%20%221e40fdfa-a93a-5f59-b865-5c6718dad4f8%22%2C%20%22vd%22%3A%202%2C%20%22stt%22%3A%203450%2C%20%22dr%22%3A%203450%2C%20%22expires%22%3A%201661651033377%2C%20%22ct%22%3A%201661649233377%7D'
     }
     url = "https://api.vvhan.com/api/horoscope?type=aries&time=today"
     print(get(url,headers=headers))
