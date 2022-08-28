@@ -142,6 +142,7 @@ def get_constellation(type):
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
     url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(type)
+    print get(url,headers=headers)
     return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
 
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en, sweetwords,constellation):
