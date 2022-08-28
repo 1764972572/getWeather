@@ -128,7 +128,7 @@ def get_constellation():
  
 def get_words():
     headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/json; charset=utf-8',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
@@ -137,7 +137,7 @@ def get_words():
     return r
 def get_constellation(type):
     headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/json; charset=utf-8',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
