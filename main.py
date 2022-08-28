@@ -141,7 +141,7 @@ def get_constellation(constellationType):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    url = "https://api.vvhan.com/api/horoscope?type={}&time=today".format(constellationType)
+    url = "https://api.vvhan.com/api/horoscope?type=aries&time=today"
     print(get(url,headers=headers))
     return get(url,headers=headers).json()["data"]["fortunetext"]["all"]
 
